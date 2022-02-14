@@ -216,7 +216,11 @@ describe('Security', () => {
     await writePromiser.send(openNavigationDelta)
 
     const result = new Promise((resolve, reject) => {
-      const ws = new WebSocket(`ws://0.0.0.0:${port}/signalk/v1/stream`)
+      const ws = new WebSocket(`ws://0.0.0.0:${port}/signalk/v1/stream`, {
+        headers: {
+          Cookie: `JAUTHENTICATION=${writeToken}` // tokens passed via cookie should be ignored
+        }
+      })
       let msgCount = 0
       ws.on('message', msg => {
         msgCount++

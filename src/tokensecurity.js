@@ -720,10 +720,6 @@ module.exports = function(app, config) {
       }
     }
 
-    if (!token) {
-      token = req.cookies && req.cookies.JAUTHENTICATION
-    }
-
     //
     // `jwt-simple` throws errors if something goes wrong when decoding the JWT.
     //
